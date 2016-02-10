@@ -48,7 +48,7 @@ include objectivefs
 
 However, this may not be very useful, as it will leave the environment entirely unconfigured.
 
-```
+```puppet
 class { objectivefs:
   license           => 'license obtained from objectivefs.com',
   access_key_id     => 'access key id obtained from Google or AWS',
