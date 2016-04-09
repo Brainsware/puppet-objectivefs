@@ -14,7 +14,7 @@ class objectivefs (
   String              $_base_url        = $::objectivefs::params::base_url,
   String              $_package_prefix  = $::objectivefs::params::package_prefix,
   String              $_package_suffix  = $::objectivefs::params::package_suffix,
-  String              $package_file     = "${_package_prefix}/${version}/${_package_suffix}",
+  String              $package_file     = "${_package_prefix}${version}${_package_suffix}",
   Datatypes::HTTPSUrl $download_url     = "${_base_url}/${uid}/${package_file}",
 ) inherits ::objectivefs::params {
 
