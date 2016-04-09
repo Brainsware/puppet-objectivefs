@@ -40,16 +40,21 @@ This module will require [puppet-archive](https://forge.puppetlabs.com/puppet/ar
 
 ## Usage
 
-To simply install objectivefs, you can:
-
-```puppet
-include objectivefs
-```
-
-However, this may not be very useful, as it will leave the environment entirely unconfigured.
+To simply install objectivefs, you have to at least give it your user id:
 
 ```puppet
 class { objectivefs:
+  uid => 'a7m3fig6c6',
+}
+```
+
+However, that will only install the software, leaving it otherwise
+unconfigured, and, useless. Once you provide your license, you can actually
+start using it:
+
+```puppet
+class { objectivefs:
+  uid               => 'a7m3fig6c6',
   license           => 'license obtained from objectivefs.com',
   access_key_id     => 'access key id obtained from Google or AWS',
   secret_access_key => 'secret access key obtained from Google or AWS',
@@ -61,6 +66,59 @@ We highly recommend keeping these values *secret* using
 [hiera-vault](https://github.com/jsok/hiera-vault).
 
 ## Reference
+
+### objectivefs
+
+This is the main class that drives the installation and the main configuration
+
+#### uid
+
+The ObjectiveFS provided UID. This can be obtained from the package
+[download URLs](https://objectivefs.com/user/downloads).
+
+* String[9, 9]
+* This parameter has no default
+
+#### package_provider
+
+The package provider
+
+* String
+* `rpm` on RedHat derivatives, `dpkg` on Debians.
+
+
+#### dependencies
+
+External dependencies this package needs. Since we're installing through a
+low-level package provider, dependencies might not be resolved automatically.
+Here we provide an option to install them.
+
+* Array[String]
+* `[ 'fuse' ]`
+
+#### download_path
+
+Where to store the package archive on disk. This directory will be created if
+it doesn't exist.
+
+* Unixpath
+* `/var/cache/objectivefs`
+
+#### version
+
+Version to install. This must be a valid objectivefs version. Strings like
+`latest` will **not** work.
+
+* String
+* 4.1.1
+
+#### download_url
+
+This is the URL where we download the package. There's generally no reason to
+change this, unless you're mirroring your own packages.
+
+* HTTPSUrl
+* `"${_base_url}/${uid}/${_package_prefix}/${version}/${_package_suffix}"`
 
 
 ## Limitations
