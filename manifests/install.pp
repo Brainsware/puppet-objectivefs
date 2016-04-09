@@ -21,6 +21,6 @@ class objectivefs::install {
   package { $::objectivefs::package_name:
     ensure   => present,
     provider => $::objectivefs::package_provider,
-    source   => "${::download_path}/${::objectivefs::package_file}",
+    source   => "${::objectivefs::download_path}/${::objectivefs::package_file}",
   }
 }
