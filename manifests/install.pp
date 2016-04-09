@@ -9,10 +9,10 @@ class objectivefs::install {
     before => Package[$::objectivefs::package_name],
   }
 
-  file { $::download_path:
+  file { $::objectivefs::download_path:
     ensure => directory,
   } ->
-  archive { "${::download_path}/${::objectivefs::package_file}":
+  archive { "${::objectivefs::download_path}/${::objectivefs::package_file}":
     ensure  => present,
     extract => false,
     source  => $::objectivefs::download_url,
