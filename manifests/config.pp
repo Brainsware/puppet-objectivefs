@@ -8,14 +8,9 @@ class objectivefs::config {
 
   file { $envdir:
     ensure => directory,
+    mode   => '0750',
   }
 
-  file { "${envdir}/OBJECTIVEFS_LICENSE":
-    ensure  => file,
-    mode    => '0400',
-    content => $::objectivefs::license,
-    require => File[$envdir],
-  }
   file { "${envdir}/OBJECTIVEFS_LICENSE":
     ensure  => file,
     mode    => '0400',
