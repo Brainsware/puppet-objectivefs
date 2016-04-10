@@ -16,7 +16,15 @@ class objectivefs (
   String              $_package_suffix  = $::objectivefs::params::package_suffix,
   String              $package_file     = "${_package_prefix}${version}${_package_suffix}",
   Datatypes::HTTPSUrl $download_url     = "${_base_url}/${uid}/${package_file}",
+
+  # Config
+  String[24,24]       $license,
+  String              $access_key_id,
+  String              $secret_access_key,
+  Optional[String]    $default_region  = undef,
+
 ) inherits ::objectivefs::params {
 
   contain ::objectivefs::install
+  contain ::objectivefs::config
 }

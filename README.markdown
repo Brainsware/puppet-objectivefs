@@ -120,6 +120,30 @@ change this, unless you're mirroring your own packages.
 * HTTPSUrl
 * `"${_base_url}/${uid}/${_package_prefix}/${version}/${_package_suffix}"`
 
+#### license
+
+This is your ObjectiveFS license. This key is mandatory, and can be found on your [profile](https://objectivefs.com/user/)
+
+* String[24,24]
+
+#### access_key_id
+
+[AWS](https://objectivefs.com/howto/how-to-get-amazon-s3-keys) or [GCS](https://objectivefs.com/howto/how-to-get-google-cloud-storage-s3-interoperability-keys) access key id.
+
+* String
+
+#### secret_access_key
+
+[AWS](https://objectivefs.com/howto/how-to-get-amazon-s3-keys) or [GCS](https://objectivefs.com/howto/how-to-get-google-cloud-storage-s3-interoperability-keys) secret access key.
+
+* String
+
+#### default_region
+
+Default region when creating new filesystems.
+
+* Optional[String]
+* undef
 
 ## Limitations
 
